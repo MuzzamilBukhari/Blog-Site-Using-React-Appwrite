@@ -22,7 +22,15 @@ class AuthService {
     name: string;
   }) => {
     try {
-      return await this.account.create(ID.unique(), email, password, name);
+      const userAccount = await this.account.create(
+        ID.unique(),
+        email,
+        password,
+        name
+      );
+      if (userAccount) {
+        this.login({ email, password });
+      }
     } catch (error) {
       console.log("Error in auth service : ", error);
     }
@@ -43,6 +51,8 @@ class AuthService {
       console.log("Error in auth service : ", error);
     }
   };
+
+  getCurrentUser = async () => {};
 }
 
 const authService = new AuthService();
