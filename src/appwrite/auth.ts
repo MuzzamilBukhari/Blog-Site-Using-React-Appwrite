@@ -29,7 +29,7 @@ class AuthService {
         name
       );
       if (userAccount) {
-        this.login({ email, password });
+        return this.login({ email, password });
       }
     } catch (error) {
       console.log("Error in auth service : ", error);
