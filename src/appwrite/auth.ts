@@ -3,11 +3,10 @@ import conf from "../conf/conf";
 
 class AuthService {
   client = new Client();
-  account: Account;
+  account!: Account;
   constructor() {
-    this.client
-      .setEndpoint(conf.appwriteProjectUrl)
-      .setProject(conf.appwriteProjectId);
+    this.client.setEndpoint(conf.appwriteProjectUrl);
+    this.client.setProject(conf.appwriteProjectId);
 
     this.account = new Account(this.client);
   }
@@ -29,7 +28,10 @@ class AuthService {
         name
       );
       if (userAccount) {
+        // direct login to user account
         return this.login({ email, password });
+      } else {
+        return null;
       }
     } catch (error) {
       console.log("Error in auth service : ", error);
@@ -52,7 +54,13 @@ class AuthService {
     }
   };
 
-  getCurrentUser = async () => {};
+  getCurrentUser = async () => {
+    try {
+      return await this.account.get();
+    } catch (error) {
+      console.log("error in auth ", error);
+    }
+  };
 }
 
 const authService = new AuthService();

@@ -1,11 +1,34 @@
-import "./App.css";
+import { Outlet } from "react-router-dom";
+import { Header, Footer } from "./components/";
+import { useEffect, useState } from "react";
+import authService from "./appwrite/auth";
+import { useDispatch } from "react-redux";
+import { login, logout } from "./store/authSlice";
 
 function App() {
-  return (
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          dispatch(login(userData));
+        } else {
+          dispatch(logout());
+        }
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  return !loading ? (
     <>
-      <h1>test</h1>
+      <Header />
+      <Outlet />
+      <Footer />
     </>
-  );
+  ) : null;
 }
 
 export default App;
