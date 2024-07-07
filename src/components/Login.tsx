@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { login as storeLogin } from "../store/authSlice";
 import { Logo, Input } from "./";
+import Button from "./Button";
 
 interface SigninFormData {
   email: string;
@@ -68,7 +69,7 @@ const Login = () => {
               placeholder="Enter your password"
               {...register("password", { required: true })}
             />
-            <button type="submit">Login</button>
+            <Button type="submit">Login</Button>
           </div>
         </form>
       </div>

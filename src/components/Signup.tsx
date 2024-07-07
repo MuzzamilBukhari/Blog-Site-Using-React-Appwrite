@@ -5,6 +5,7 @@ import authService from "../appwrite/auth";
 import { login } from "../store/authSlice";
 import { Input, Logo } from "./";
 import { useForm } from "react-hook-form";
+import Button from "./Button";
 
 interface SignupFormData {
   name: string;
@@ -81,7 +82,7 @@ const Signup = () => {
                 required: true,
               })}
             />
-            <button type="submit">Sign up</button>
+            <Button type="submit">Sign up</Button>
           </div>
         </form>
       </div>
