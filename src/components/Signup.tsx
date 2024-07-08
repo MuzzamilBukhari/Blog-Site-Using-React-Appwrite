@@ -19,7 +19,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const signup = async (data: SignupFormData) => {
     setError("");
-    console.log("hey");
 
     try {
       const session = await authService.createAccount(data);

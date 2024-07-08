@@ -34,6 +34,7 @@ class AuthService {
         return null;
       }
     } catch (error) {
+      throw error;
       console.log("Error in auth service : ", error);
     }
   };
@@ -42,7 +43,7 @@ class AuthService {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log("Error in auth service : ", error);
+      throw error;
     }
   };
 

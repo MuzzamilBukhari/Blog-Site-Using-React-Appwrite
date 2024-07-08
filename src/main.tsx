@@ -9,8 +9,9 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Home, Signup, Login } from "./pages/";
+import { Home, Signup, Login, AddPost } from "./pages/";
 import AuthLayout from "./components/AuthLayout.tsx";
+import AllPosts from "./pages/AllPosts.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,22 @@ const router = createBrowserRouter(
         element={
           <AuthLayout authentication={false}>
             <Login />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/add-post"
+        element={
+          <AuthLayout authentication>
+            <AddPost />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/all-posts"
+        element={
+          <AuthLayout authentication>
+            <AllPosts />
           </AuthLayout>
         }
       />

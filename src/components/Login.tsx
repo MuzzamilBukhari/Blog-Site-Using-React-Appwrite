@@ -18,6 +18,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm<SigninFormData>();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const login = async (data: SigninFormData) => {
     setError("");
     try {
@@ -54,7 +55,7 @@ const Login = () => {
             Sign up
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        <p className="text-red-600 mt-8 text-center">{error}</p>
         <form onSubmit={handleSubmit(login)}>
           <div className="space-y-5">
             <Input
