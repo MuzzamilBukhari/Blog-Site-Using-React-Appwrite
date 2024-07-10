@@ -35,11 +35,22 @@ const Home = () => {
     );
   }
   return (
-    <div className="w-full py-8 mt-4 text-center">
+    // <div className="w-full py-8 mt-4 text-center">
+    //   <Container>
+    //     <div className="flex flex-wrap">
+    //       <div className="p-2 w-full">
+    //         <h1 className="text-2xl font-bold hover:text-gray-500">
+    //           Login to read posts
+    //         </h1>
+    //       </div>
+    //     </div>
+    //   </Container>
+    // </div>
+    <div className="w-full py-8 mt-4 text-center bg-gray-100">
       <Container>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
           <div className="p-2 w-full">
-            <h1 className="text-2xl font-bold hover:text-gray-500">
+            <h1 className="text-4xl font-bold text-gray-800 hover:text-gray-500 transition duration-200">
               Login to read posts
             </h1>
           </div>

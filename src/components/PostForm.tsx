@@ -95,21 +95,21 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
   }, [watch, slugTransform, setValue]);
   return (
     <div className="w-full mt-5">
-      <p>{error}</p>
+      {error && <p className="text-red-500">{error}</p>}
       <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-        <div className="w-2/3 px-2">
+        <div className="w-full lg:w-2/3 px-2 mb-4">
           <Input
             label="Title : "
             type="text"
             placeholder="Enter post title"
-            className="mb-4"
+            className="mb-4 w-full"
             {...register("title", { required: true })}
           />
           <Input
             label="Slug : "
             type="text"
             placeholder="slug"
-            className="mb-2"
+            className="mb-4 w-full"
             {...register("slug", { required: true })}
             readonly={true}
             onInput={(e) => setValue("slug", slugTransform(e.target.value))}
@@ -119,16 +119,17 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
             label="Content"
             control={control}
             defaultValue={getValues("content")}
+            className="w-full"
           />
         </div>
-        <div className="w-1/3 px-2">
+        <div className="w-full lg:w-1/3 px-2 mb-4">
           <Select
-            label="status"
+            label="Status"
             options={["active", "inactive"]}
-            className="mb-4"
+            className="mb-4 w-full"
             {...register("status")}
           />
-          <Button type="submit" className="mb-4">
+          <Button type="submit" className="w-full">
             {post ? "Update" : "Submit"}
           </Button>
         </div>

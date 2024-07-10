@@ -5,15 +5,17 @@ const RTE = ({
   name,
   control,
   label,
+  className,
   defaultValue = "",
 }: {
   name: string;
   control: any;
   label: string;
+  className?: string
   defaultValue?: string;
 }) => {
   return (
-    <div>
+    <div className={`${className}`}>
       {label && <label>{label}</label>}
       <Controller
         name={name}
@@ -22,6 +24,7 @@ const RTE = ({
           <Editor
             apiKey="c5d6nw47jofjtqq6nfbhvy0ur1udr3xsxebst6dloaw5g7r8"
             initialValue={defaultValue}
+
             init={{
               height: 500,
               menubar: true,

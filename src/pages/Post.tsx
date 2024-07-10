@@ -39,17 +39,17 @@ const Post = () => {
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-white shadow-lg">
           <img
             src="https://media.istockphoto.com/id/1386341272/photo/abstract-modern-tech-of-programming-code-screen-developer.jpg?s=1024x1024&w=is&k=20&c=jpW8mLvcrvhgDyPbwHV7OoluREDU5GLxk-I6gg13hw8="
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl w-full object-cover h-96"
           />
 
           {isAuthor && (
-            <div className="absolute right-6 top-6">
+            <div className="absolute right-6 top-6 flex space-x-3">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3" type={"button"}>
+                <Button bgColor="bg-green-500" className="mr-3" type="button">
                   Edit
                 </Button>
               </Link>
@@ -60,9 +60,9 @@ const Post = () => {
           )}
         </div>
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-3xl font-bold text-gray-800">{post.title}</h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="prose max-w-none">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;
