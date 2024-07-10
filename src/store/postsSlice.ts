@@ -13,12 +13,15 @@ const postsSlice = createSlice({
       const post = actions.payload;
       state.posts.push(post);
     },
+    deletePost: (state, actions) => {
+      state.posts = state.posts.filter((post) => post.$id !== actions.payload);
+    },
     fetchPosts: (state, actions) => {
       state.posts = actions.payload;
     },
   },
 });
 
-export const { createPost, fetchPosts } = postsSlice.actions;
+export const { createPost, fetchPosts, deletePost } = postsSlice.actions;
 
 export default postsSlice.reducer;

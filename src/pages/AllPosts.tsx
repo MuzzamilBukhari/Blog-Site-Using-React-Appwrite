@@ -10,11 +10,13 @@ const AllPosts = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state: RootState) => state.posts.posts);
 
+  // if someone refresh page at allposts page then it fetches posts again
   useEffect(() => {
     databaseServices.getPosts().then((res) => {
       dispatch(fetchPosts(res.documents));
     });
   }, []);
+
   return (
     <div className="w-full py-8">
       <Container>

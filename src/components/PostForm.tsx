@@ -24,10 +24,12 @@ const PostForm = () => {
   const submit = async (data: PostFormData) => {
     setError("");
     try {
-      console.log(userData);
+      // console.log(userData);
 
       const postData = await databaseServices.createPost(data, userData?.$id);
       dispatch(createPost(postData));
+      // console.log(postData);
+
       navigate(`/post/${postData.$id}`);
     } catch (error) {
       if (error instanceof Error) setError(error.message);

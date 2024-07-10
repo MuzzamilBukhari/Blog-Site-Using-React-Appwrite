@@ -1,4 +1,4 @@
-import { Client, Databases, ID, Query } from "appwrite";
+import { Client, Databases } from "appwrite";
 import conf from "../conf/conf";
 
 export class DatabaseServices {
@@ -15,10 +15,12 @@ export class DatabaseServices {
   createPost = async (
     {
       title,
+      slug,
       content,
       status,
     }: {
       title: string;
+      slug: string;
       content: string;
       status: string;
     },
@@ -28,7 +30,7 @@ export class DatabaseServices {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        ID.unique(),
+        slug,
         {
           title,
           content,
@@ -49,6 +51,30 @@ export class DatabaseServices {
       );
     } catch (error) {
       throw error;
+    }
+  };
+
+  getPost = async (postId: string) => {
+    try {
+      return await this.databases.getDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        postId
+      );
+    } catch (error) {
+      console.log("Database", error);
+    }
+  };
+
+  deletePost = async (postId: string) => {
+    try {
+      return await this.databases.deleteDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        postId
+      );
+    } catch (error) {
+      console.log("database error ", error);
     }
   };
 }

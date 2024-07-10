@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { Container } from "../components";
+import { Container, PostCard } from "../components";
 import { useEffect } from "react";
 import databaseServices from "../appwrite/database";
 import { fetchPosts } from "../store/postsSlice";
-import PostCard from "../components/PostCard";
 
 const Home = () => {
   const authStatus = useSelector((state: RootState) => state.auth.status);
@@ -16,6 +15,7 @@ const Home = () => {
       dispatch(fetchPosts(res.documents));
     });
   }, []);
+  // console.log(posts[0]);
 
   if (authStatus && posts) {
     return (
