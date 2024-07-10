@@ -51,7 +51,7 @@ const Header = () => {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full text-white"
+                    className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 hover:text-black rounded-full text-white"
                   >
                     {item.name}
                   </button>

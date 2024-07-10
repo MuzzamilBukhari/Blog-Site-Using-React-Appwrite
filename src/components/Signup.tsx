@@ -35,7 +35,7 @@ const Signup = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
@@ -55,33 +55,32 @@ const Signup = () => {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(signup)}>
+        <form onSubmit={handleSubmit(signup)} className="mt-8">
           <div className="space-y-5">
             <Input
               label="Full Name : "
               type="text"
               placeholder="Enter your name"
-              {...register("name", {
-                required: true,
-              })}
+              {...register("name", { required: true })}
             />
             <Input
               label="Email : "
               type="email"
               placeholder="Enter your email"
-              {...register("email", {
-                required: true,
-              })}
+              {...register("email", { required: true })}
             />
             <Input
               label="Password : "
               type="password"
               placeholder="Enter your password"
-              {...register("password", {
-                required: true,
-              })}
+              {...register("password", { required: true })}
             />
-            <Button type="submit">Sign up</Button>
+            <Button
+              type="submit"
+              className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Sign up
+            </Button>
           </div>
         </form>
       </div>
