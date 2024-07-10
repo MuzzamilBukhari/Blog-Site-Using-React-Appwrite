@@ -9,7 +9,15 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Home, Signup, Login, AddPost, AllPosts, Post } from "./pages/";
+import {
+  Home,
+  Signup,
+  Login,
+  AddPost,
+  AllPosts,
+  Post,
+  EditPost,
+} from "./pages/";
 import AuthLayout from "./components/AuthLayout.tsx";
 
 const router = createBrowserRouter(
@@ -53,6 +61,14 @@ const router = createBrowserRouter(
         element={
           <AuthLayout authentication>
             <Post />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/edit-post/:slug"
+        element={
+          <AuthLayout authentication>
+            <EditPost />
           </AuthLayout>
         }
       />

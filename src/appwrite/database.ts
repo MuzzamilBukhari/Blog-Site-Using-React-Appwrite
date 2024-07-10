@@ -77,6 +77,34 @@ export class DatabaseServices {
       console.log("database error ", error);
     }
   };
+
+  updatePost = async (
+    {
+      title,
+      content,
+      status,
+    }: {
+      title: string;
+      content: string;
+      status: string;
+    },
+    postId: string
+  ) => {
+    try {
+      return this.databases.updateDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        postId,
+        {
+          title,
+          content,
+          status,
+        }
+      );
+    } catch (error) {
+      console.log("database error ", error);
+    }
+  };
 }
 
 const databaseServices = new DatabaseServices();

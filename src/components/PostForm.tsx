@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
-import { createPost } from "../store/postsSlice";
+import { createPost, updatePost } from "../store/postsSlice";
+import { Models } from "appwrite";
 
 interface PostFormData {
   title: string;
@@ -14,23 +15,36 @@ interface PostFormData {
   status: string;
 }
 
-const PostForm = () => {
+const PostForm = ({ post }: { post?: Models.Document }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.auth.userData);
   const { register, handleSubmit, watch, setValue } = useForm<PostFormData>();
 
+  useEffect(() => {
+    if (post) {
+      setValue("title", post.title);
+      setValue("slug", post.$id);
+      setValue("content", post.content);
+      setValue("status", post.status);
+    }
+  }, [post, setValue]);
+
   const submit = async (data: PostFormData) => {
     setError("");
     try {
-      // console.log(userData);
-
-      const postData = await databaseServices.createPost(data, userData?.$id);
-      dispatch(createPost(postData));
-      // console.log(postData);
-
-      navigate(`/post/${postData.$id}`);
+      if (post) {
+        const postData = await databaseServices.updatePost(data, post.$id);
+        if (postData) {
+          dispatch(updatePost(postData));
+          navigate(`/post/${postData.$id}`);
+        }
+      } else {
+        const postData = await databaseServices.createPost(data, userData?.$id);
+        dispatch(createPost(postData));
+        navigate(`/post/${postData.$id}`);
+      }
     } catch (error) {
       if (error instanceof Error) setError(error.message);
       throw error;
@@ -49,6 +63,8 @@ const PostForm = () => {
   }, []);
 
   useEffect(() => {
+    // console.log(post);
+
     const subscription = watch((value, { name }) => {
       if (name === "title") {
         if (value.title)
@@ -90,7 +106,7 @@ const PostForm = () => {
           options={["active", "inactive"]}
           {...register("status")}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{post ? "Update" : "Submit"}</Button>
       </form>
     </div>
   );
