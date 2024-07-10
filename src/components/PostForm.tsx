@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Input, Select, Button } from "./";
+import { Input, Select, Button, RTE } from "./";
 import databaseServices from "../appwrite/database";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -16,11 +16,26 @@ interface PostFormData {
 }
 
 const PostForm = ({ post }: { post?: Models.Document }) => {
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.auth.userData);
-  const { register, handleSubmit, watch, setValue } = useForm<PostFormData>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    getValues,
+    control,
+  } = useForm<PostFormData>({
+    defaultValues: {
+      title: "",
+      slug: "",
+      content: "",
+      status: "active",
+    },
+  });
 
   useEffect(() => {
     if (post) {
@@ -28,6 +43,7 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
       setValue("slug", post.$id);
       setValue("content", post.content);
       setValue("status", post.status);
+      setLoading(false);
     }
   }, [post, setValue]);
 
@@ -78,35 +94,44 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
     };
   }, [watch, slugTransform, setValue]);
   return (
-    <div>
+    <div className="w-full mt-5">
       <p>{error}</p>
-      <form onSubmit={handleSubmit(submit)}>
-        <Input
-          label="Title : "
-          type="text"
-          placeholder="Enter post title"
-          {...register("title", { required: true })}
-        />
-        <Input
-          label="Slug : "
-          type="text"
-          placeholder="slug"
-          {...register("slug", { required: true })}
-          readonly={true}
-          onInput={(e) => setValue("slug", slugTransform(e.target.value))}
-        />
-        <Input
-          label="Post description : "
-          type="text"
-          placeholder="Write post content"
-          {...register("content", { required: true })}
-        />
-        <Select
-          label="status"
-          options={["active", "inactive"]}
-          {...register("status")}
-        />
-        <Button type="submit">{post ? "Update" : "Submit"}</Button>
+      <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <div className="w-2/3 px-2">
+          <Input
+            label="Title : "
+            type="text"
+            placeholder="Enter post title"
+            className="mb-4"
+            {...register("title", { required: true })}
+          />
+          <Input
+            label="Slug : "
+            type="text"
+            placeholder="slug"
+            className="mb-2"
+            {...register("slug", { required: true })}
+            readonly={true}
+            onInput={(e) => setValue("slug", slugTransform(e.target.value))}
+          />
+          <RTE
+            name="content"
+            label="Content"
+            control={control}
+            defaultValue={getValues("content")}
+          />
+        </div>
+        <div className="w-1/3 px-2">
+          <Select
+            label="status"
+            options={["active", "inactive"]}
+            className="mb-4"
+            {...register("status")}
+          />
+          <Button type="submit" className="mb-4">
+            {post ? "Update" : "Submit"}
+          </Button>
+        </div>
       </form>
     </div>
   );
