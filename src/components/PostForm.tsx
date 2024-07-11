@@ -23,6 +23,8 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.auth.userData);
+  console.log(loading);
+
   const {
     register,
     handleSubmit,
@@ -59,10 +61,14 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
         if (response) {
           const file = await bucketServices.uploadFile(data.featuredImage[0]);
           if (file) {
-            const postData = await databaseServices.updatePost(data, file.$id, post.$id);
+            const postData = await databaseServices.updatePost(
+              data,
+              file.$id,
+              post.$id
+            );
             if (postData) {
-              dispatch(updatePost(postData))
-              navigate(`/post/${postData.$id}`)
+              dispatch(updatePost(postData));
+              navigate(`/post/${postData.$id}`);
             }
           }
         }
@@ -97,7 +103,6 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
   }, []);
 
   useEffect(() => {
-
     const subscription = watch((value, { name }) => {
       if (name === "title") {
         if (value.title)
@@ -142,7 +147,10 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
         <div className="w-full lg:w-1/3 px-2 mb-4">
           {post && (
             <div>
-              <img src={`${bucketServices.getFilePreview(post.featuredImage)}`} alt={post.title} />
+              <img
+                src={`${bucketServices.getFilePreview(post.featuredImage)}`}
+                alt={post.title}
+              />
             </div>
           )}
           <Input
