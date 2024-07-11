@@ -26,9 +26,9 @@ export class BucketServices {
     }
   };
 
-  getFilePreview = async (fileId: string) => {
+  getFilePreview = (fileId: string) => {
     try {
-      return await this.storage.getFile(conf.appwriteBucketId, fileId);
+      return this.storage.getFilePreview(conf.appwriteBucketId, fileId)
     } catch (error) {
       console.log("Bucket error : ", error);
     }

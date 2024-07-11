@@ -24,7 +24,7 @@ export class DatabaseServices {
       content: string;
       status: string;
     },
-    fileId: string,
+    featuredImage: string,
     userId: string | undefined
   ) => {
     try {
@@ -33,11 +33,7 @@ export class DatabaseServices {
         conf.appwriteCollectionId,
         slug,
         {
-          title,
-          content,
-          userId,
-          status,
-          fileId,
+          title, content, userId, status, featuredImage
         }
       );
     } catch (error) {
@@ -90,6 +86,7 @@ export class DatabaseServices {
       content: string;
       status: string;
     },
+    featuredImage: string,
     postId: string
   ) => {
     try {
@@ -101,6 +98,7 @@ export class DatabaseServices {
           title,
           content,
           status,
+          featuredImage
         }
       );
     } catch (error) {

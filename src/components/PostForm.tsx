@@ -14,7 +14,7 @@ interface PostFormData {
   slug: string;
   content: string;
   status: string;
-  featuredImage: File;
+  featuredImage: File[];
 }
 
 const PostForm = ({ post }: { post?: Models.Document }) => {
@@ -53,18 +53,26 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
     setError("");
     try {
       if (post) {
-        const postData = await databaseServices.updatePost(data, post.$id);
-        if (postData) {
-          dispatch(updatePost(postData));
-          navigate(`/post/${postData.$id}`);
+        const response = await bucketServices.deleteFile(post.featuredImage);
+        console.log("image deleted");
+
+        if (response) {
+          const file = await bucketServices.uploadFile(data.featuredImage[0]);
+          if (file) {
+            const postData = await databaseServices.updatePost(data, file.$id, post.$id);
+            if (postData) {
+              dispatch(updatePost(postData))
+              navigate(`/post/${postData.$id}`)
+            }
+          }
         }
       } else {
-        console.log(typeof data.featuredImage);
-        // const file = await bucketServices.uploadFile(data.featuredImage);
-        // if (file) {
+        const file = await bucketServices.uploadFile(data.featuredImage[0]);
+
+        if (file) {
           const postData = await databaseServices.createPost(
             data,
-            // file.$id,
+            file.$id,
             userData?.$id
           );
           dispatch(createPost(postData));
@@ -89,7 +97,6 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
   }, []);
 
   useEffect(() => {
-    // console.log(post);
 
     const subscription = watch((value, { name }) => {
       if (name === "title") {
@@ -133,6 +140,11 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
           />
         </div>
         <div className="w-full lg:w-1/3 px-2 mb-4">
+          {post && (
+            <div>
+              <img src={`${bucketServices.getFilePreview(post.featuredImage)}`} alt={post.title} />
+            </div>
+          )}
           <Input
             placeholder=""
             type="file"

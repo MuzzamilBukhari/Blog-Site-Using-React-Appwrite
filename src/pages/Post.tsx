@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { deletePost as storeDeletePost } from "../store/postsSlice";
 import parse from "html-react-parser";
+import bucketServices from "../appwrite/bucket";
 
 const Post = () => {
   const [post, setPost] = useState<Models.Document | undefined>();
@@ -41,7 +42,8 @@ const Post = () => {
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-white shadow-lg">
           <img
-            src="https://media.istockphoto.com/id/1386341272/photo/abstract-modern-tech-of-programming-code-screen-developer.jpg?s=1024x1024&w=is&k=20&c=jpW8mLvcrvhgDyPbwHV7OoluREDU5GLxk-I6gg13hw8="
+            src={`${bucketServices.getFilePreview(post.featuredImage)}`}
+            // src="https://media.istockphoto.com/id/1386341272/photo/abstract-modern-tech-of-programming-code-screen-developer.jpg?s=1024x1024&w=is&k=20&c=jpW8mLvcrvhgDyPbwHV7OoluREDU5GLxk-I6gg13hw8="
             alt={post.title}
             className="rounded-xl w-full object-cover h-96"
           />
