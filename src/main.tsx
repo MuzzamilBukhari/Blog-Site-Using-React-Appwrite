@@ -19,6 +19,7 @@ import {
   EditPost,
 } from "./pages/";
 import AuthLayout from "./components/AuthLayout.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -72,6 +73,7 @@ const router = createBrowserRouter(
           </AuthLayout>
         }
       />
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
