@@ -7,6 +7,7 @@ const Input = (
     className = "",
     placeholder = "",
     readonly = false,
+    accept,
     onInput,
     ...props
   }: {
@@ -14,6 +15,7 @@ const Input = (
     type: string;
     className?: string;
     placeholder: string;
+    accept?: string;
     readonly?: boolean;
     onInput?: (e: any) => void;
   },
@@ -31,6 +33,7 @@ const Input = (
         placeholder={placeholder}
         type={type}
         ref={ref}
+        accept={accept}
         className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
         id={id}
         onInput={onInput}

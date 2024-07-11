@@ -24,6 +24,7 @@ export class DatabaseServices {
       content: string;
       status: string;
     },
+    fileId: string,
     userId: string | undefined
   ) => {
     try {
@@ -36,6 +37,7 @@ export class DatabaseServices {
           content,
           userId,
           status,
+          fileId,
         }
       );
     } catch (error) {

@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import { createPost, updatePost } from "../store/postsSlice";
 import { Models } from "appwrite";
+import bucketServices from "../appwrite/bucket";
 
 interface PostFormData {
   title: string;
   slug: string;
   content: string;
   status: string;
+  featuredImage: File;
 }
 
 const PostForm = ({ post }: { post?: Models.Document }) => {
@@ -57,9 +59,17 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
           navigate(`/post/${postData.$id}`);
         }
       } else {
-        const postData = await databaseServices.createPost(data, userData?.$id);
-        dispatch(createPost(postData));
-        navigate(`/post/${postData.$id}`);
+        console.log(typeof data.featuredImage);
+        // const file = await bucketServices.uploadFile(data.featuredImage);
+        // if (file) {
+          const postData = await databaseServices.createPost(
+            data,
+            // file.$id,
+            userData?.$id
+          );
+          dispatch(createPost(postData));
+          navigate(`/post/${postData.$id}`);
+        }
       }
     } catch (error) {
       if (error instanceof Error) setError(error.message);
@@ -123,6 +133,14 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
           />
         </div>
         <div className="w-full lg:w-1/3 px-2 mb-4">
+          <Input
+            placeholder=""
+            type="file"
+            label="Featured Image"
+            accept=""
+            className="mb-4"
+            {...register("featuredImage", { required: !post })}
+          />
           <Select
             label="Status"
             options={["active", "inactive"]}
