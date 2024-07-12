@@ -55,19 +55,25 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
     setError("");
     try {
       if (post) {
-        // let fileId = post.featuredImage;
+        let fileId = post.featuredImage;
         if (data.featuredImage[0]) {
           const response = await bucketServices.deleteFile(post.featuredImage);
+          console.log("response agya");
+
           if (response) {
             const file = await bucketServices.uploadFile(data.featuredImage[0]);
+            console.log("file upload hogai");
+
             if (file) {
-              post.featuredImage = file.$id;
+              fileId = file.$id;
+              console.log("id bh asign hogai");
             }
           }
+          console.log("image di h");
         }
         const postData = await databaseServices.updatePost(
           data,
-          post.featuredImage,
+          fileId,
           post.$id
         );
         if (postData) {
