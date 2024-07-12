@@ -55,22 +55,24 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
     setError("");
     try {
       if (post) {
-        const response = await bucketServices.deleteFile(post.featuredImage);
-        console.log("image deleted");
-
-        if (response) {
-          const file = await bucketServices.uploadFile(data.featuredImage[0]);
-          if (file) {
-            const postData = await databaseServices.updatePost(
-              data,
-              file.$id,
-              post.$id
-            );
-            if (postData) {
-              dispatch(updatePost(postData));
-              navigate(`/post/${postData.$id}`);
+        // let fileId = post.featuredImage;
+        if (data.featuredImage[0]) {
+          const response = await bucketServices.deleteFile(post.featuredImage);
+          if (response) {
+            const file = await bucketServices.uploadFile(data.featuredImage[0]);
+            if (file) {
+              post.featuredImage = file.$id;
             }
           }
+        }
+        const postData = await databaseServices.updatePost(
+          data,
+          post.featuredImage,
+          post.$id
+        );
+        if (postData) {
+          dispatch(updatePost(postData));
+          navigate(`/post/${postData.$id}`);
         }
       } else {
         const file = await bucketServices.uploadFile(data.featuredImage[0]);
