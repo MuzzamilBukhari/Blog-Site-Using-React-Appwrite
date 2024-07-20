@@ -13,9 +13,7 @@ const LogoutBtn = () => {
   return (
     <Button
       type="button"
-      bgColor="bg-red-500" // Default background color
-      textColor="text-white" // Default text color
-      className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 hover:text-black rounded-full"
+      className="bg-lightBlue hover:bg-white hover:text-purple font-semibold py-1.5 px-4 rounded-full transition-colors duration-300"
       onClick={handleLogout}
     >
       Logout

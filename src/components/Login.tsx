@@ -36,27 +36,27 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
+    <div className="flex items-center justify-center min-h-screen -mt-8 -mb-8 py-4 bg-gradient-to-r from-darkBlue via-green to-purple">
+      <div className="mx-auto w-full max-w-lg bg-white rounded-xl p-10 shadow-lg border border-darkBlue/10">
+        <div className="mb-4 flex justify-center">
+          <span className="inline-block w-full max-w-[120px]">
             <Logo />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
+        <h2 className="text-center text-3xl font-bold text-darkBlue mb-4">
           Sign in to your account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
+        <p className="text-center text-base text-purple mb-6">
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
+            className="font-medium text-purple hover:text-darkBlue transition-all duration-200"
           >
             Sign up
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(login)} className="mt-8">
+        {error && <p className="text-red-600 mt-4 text-center">{error}</p>}
+        <form onSubmit={handleSubmit(login)} className="mt-4">
           <div className="space-y-5">
             <Input
               label="Email : "
@@ -72,7 +72,7 @@ const Login = () => {
             />
             <Button
               type="submit"
-              className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="w-full py-3 bg-green text-white rounded-full hover:bg-darkBlue transition duration-200"
             >
               Login
             </Button>

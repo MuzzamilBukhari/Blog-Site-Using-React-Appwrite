@@ -40,31 +40,47 @@ const Post = () => {
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-white shadow-lg">
+        {/* Post Image */}
+        <div className="relative w-full flex justify-center mb-4 border rounded-xl bg-white shadow-lg overflow-hidden">
           <img
             src={`${bucketServices.getFilePreview(post.featuredImage)}`}
-            // src="https://media.istockphoto.com/id/1386341272/photo/abstract-modern-tech-of-programming-code-screen-developer.jpg?s=1024x1024&w=is&k=20&c=jpW8mLvcrvhgDyPbwHV7OoluREDU5GLxk-I6gg13hw8="
             alt={post.title}
-            className="rounded-xl w-full object-cover h-96"
+            className="w-full h-96 object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
           />
 
+          {/* Edit and Delete Buttons */}
           {isAuthor && (
-            <div className="absolute right-6 top-6 flex space-x-3">
+            <div className="absolute top-4 right-4 flex space-x-3">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3" type="button">
+                <Button
+                  bgColor="bg-green-500"
+                  className="text-white shadow-md hover:bg-green-600 transition duration-200"
+                  type="button"
+                >
                   Edit
                 </Button>
               </Link>
-              <Button bgColor="bg-red-500" type="button" onClick={deletePost}>
+              <Button
+                bgColor="bg-red-500"
+                className="text-white shadow-md hover:bg-red-600 transition duration-200"
+                type="button"
+                onClick={deletePost}
+              >
                 Delete
               </Button>
             </div>
           )}
         </div>
+
+        {/* Post Title */}
         <div className="w-full mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">{post.title}</h1>
+          <h1 className="text-4xl font-bold text-darkBlue">{post.title}</h1>
         </div>
-        <div className="prose max-w-none">{parse(post.content)}</div>
+
+        {/* Post Content */}
+        <div className="prose max-w-none text-gray-800">
+          {parse(post.content)}
+        </div>
       </Container>
     </div>
   ) : null;

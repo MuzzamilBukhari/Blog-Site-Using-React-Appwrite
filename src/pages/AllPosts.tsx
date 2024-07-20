@@ -18,11 +18,17 @@ const AllPosts = () => {
   }, []);
 
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 bg-gray-50">
       <Container>
-        <div className="flex flex-wrap">
+        <h1 className="text-3xl font-bold text-darkBlue text-center mb-8 transition-transform duration-500 ease-in-out transform hover:scale-105">
+          All Posts
+        </h1>
+        <div className="flex flex-wrap -m-2">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div
+              key={post.$id}
+              className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 transition-transform duration-500 ease-in-out transform hover:scale-105"
+            >
               <PostCard post={post} />
             </div>
           ))}

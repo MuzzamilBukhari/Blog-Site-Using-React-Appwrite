@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="relative overflow-hidden py-10 bg-gray-400 border-t-2 border-t-black">
+    <section className="relative overflow-hidden py-10 bg-gradient-to-r from-darkBlue via-green to-purple border-t-2 border-t-black">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
@@ -12,7 +12,7 @@ const Footer = () => {
                 <Logo />
               </div>
               <div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-lightBlue">
                   &copy; Copyright 2023. All Rights Reserved by DevUI.
                 </p>
               </div>
@@ -20,13 +20,13 @@ const Footer = () => {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9 text-xs font-semibold uppercase text-gray-500">
+              <h3 className="tracking-px mb-9 text-xs font-semibold uppercase text-lightBlue">
                 Company
               </h3>
               <ul>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/features"
                   >
                     Features
@@ -34,7 +34,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/pricing"
                   >
                     Pricing
@@ -42,7 +42,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/affiliate"
                   >
                     Affiliate Program
@@ -50,7 +50,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/presskit"
                   >
                     Press Kit
@@ -61,13 +61,13 @@ const Footer = () => {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9 text-xs font-semibold uppercase text-gray-500">
+              <h3 className="tracking-px mb-9 text-xs font-semibold uppercase text-lightBlue">
                 Support
               </h3>
               <ul>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/account"
                   >
                     Account
@@ -75,7 +75,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/help"
                   >
                     Help
@@ -83,7 +83,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/contact"
                   >
                     Contact Us
@@ -91,7 +91,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/support"
                   >
                     Customer Support
@@ -102,13 +102,13 @@ const Footer = () => {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-3/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9 text-xs font-semibold uppercase text-gray-500">
+              <h3 className="tracking-px mb-9 text-xs font-semibold uppercase text-lightBlue">
                 Legals
               </h3>
               <ul>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/terms"
                   >
                     Terms &amp; Conditions
@@ -116,7 +116,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/privacy"
                   >
                     Privacy Policy
@@ -124,7 +124,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                    className="text-base font-medium text-lightBlue hover:text-white"
                     to="/licensing"
                   >
                     Licensing
