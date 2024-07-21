@@ -123,29 +123,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold text-lightBlue">Featured Posts</h2>
-          <div className="flex flex-wrap justify-center mt-6 space-x-4">
-            <div className="p-4 bg-white rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-darkBlue">
-                Post Title 1
-              </h3>
-              <p className="text-gray-700">Brief description of the post...</p>
-            </div>
-            <div className="p-4 bg-white rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-darkBlue">
-                Post Title 2
-              </h3>
-              <p className="text-gray-700">Brief description of the post...</p>
-            </div>
-            <div className="p-4 bg-white rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-darkBlue">
-                Post Title 3
-              </h3>
-              <p className="text-gray-700">Brief description of the post...</p>
-            </div>
-          </div>
-        </div>
       </Container>
     </div>
   );

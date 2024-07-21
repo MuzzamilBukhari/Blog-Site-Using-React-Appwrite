@@ -1,13 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Header, Footer } from "./components/";
 import { useEffect, useState } from "react";
 import authService from "./appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login, logout } from "./store/authSlice";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     authService
@@ -25,7 +27,11 @@ function App() {
   return !loading ? (
     <>
       <Header />
-      <Outlet />
+      <TransitionGroup>
+        <CSSTransition key={location.key} classNames="fade" timeout={600}>
+          <Outlet />
+        </CSSTransition>
+      </TransitionGroup>
       <Footer />
     </>
   ) : null;
