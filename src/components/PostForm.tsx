@@ -124,63 +124,6 @@ const PostForm = ({ post }: { post?: Models.Document }) => {
     };
   }, [watch, slugTransform, setValue]);
   return (
-    // <div className="w-full mt-5">
-    //   {error && <p className="text-red-500">{error}</p>}
-    //   <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-    //     <div className="w-full lg:w-2/3 px-2 mb-4">
-    //       <Input
-    //         label="Title : "
-    //         type="text"
-    //         placeholder="Enter post title"
-    //         className="mb-4 w-full"
-    //         {...register("title", { required: true })}
-    //       />
-    //       <Input
-    //         label="Slug : "
-    //         type="text"
-    //         placeholder="slug"
-    //         className="mb-4 w-full"
-    //         {...register("slug", { required: true })}
-    //         readonly={true}
-    //         onInput={(e) => setValue("slug", slugTransform(e.target.value))}
-    //       />
-    //       <RTE
-    //         name="content"
-    //         label="Content"
-    //         control={control}
-    //         defaultValue={getValues("content")}
-    //         className="w-full"
-    //       />
-    //     </div>
-    //     <div className="w-full lg:w-1/3 px-2 mb-4">
-    //       {post && (
-    //         <div>
-    //           <img
-    //             src={`${bucketServices.getFilePreview(post.featuredImage)}`}
-    //             alt={post.title}
-    //           />
-    //         </div>
-    //       )}
-    //       <Input
-    //         placeholder=""
-    //         type="file"
-    //         label="Featured Image"
-    //         accept=""
-    //         className="mb-4"
-    //         {...register("featuredImage", { required: !post })}
-    //       />
-    //       <Select
-    //         label="Status"
-    //         options={["active", "inactive"]}
-    //         className="mb-4 w-full"
-    //         {...register("status")}
-    //       />
-    //       <Button type="submit" className="w-full">
-    //         {post ? "Update" : "Submit"}
-    //       </Button>
-    //     </div>
-    //   </form>
-    // </div>
     <div className="w-full mt-5">
       {/* Display error message if exists */}
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}

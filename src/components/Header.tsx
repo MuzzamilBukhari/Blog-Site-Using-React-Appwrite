@@ -37,36 +37,6 @@ const Header = () => {
   ];
 
   return (
-    // <header className="py-3 shadow bg-gray-500">
-    //   <Container>
-    //     <nav className="flex items-center">
-    //       <div className="mr-4">
-    //         <Link to="/">
-    //           <Logo />
-    //         </Link>
-    //       </div>
-    //       <ul className="flex ml-auto space-x-4">
-    //         {navItems.map((item) =>
-    //           item.isActive ? (
-    //             <li key={item.name}>
-    //               <button
-    //                 onClick={() => navigate(item.slug)}
-    //                 className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 hover:text-black rounded-full text-white"
-    //               >
-    //                 {item.name}
-    //               </button>
-    //             </li>
-    //           ) : null
-    //         )}
-    //         {authStatus && (
-    //           <li>
-    //             <LogoutBtn />
-    //           </li>
-    //         )}
-    //       </ul>
-    //     </nav>
-    //   </Container>
-    // </header>
     <header className="bg-gradient-to-r from-darkBlue via-green to-purple shadow-md py-4">
       <Container>
         <nav className="flex items-center justify-between">

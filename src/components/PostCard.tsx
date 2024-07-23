@@ -16,7 +16,6 @@ const PostCard = ({ post }: { post: Models.Document }) => {
         <h2 className="text-xl font-semibold text-darkBlue mb-2 hover:text-green transition duration-200">
           {post.title}
         </h2>
-        {/* <p className="text-gray-600">By {post.author}</p> */}
       </div>
     </Link>
   );
